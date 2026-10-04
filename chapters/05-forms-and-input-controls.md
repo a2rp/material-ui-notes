@@ -127,16 +127,44 @@ Browser validation can catch simple mistakes, but the server must validate submi
 A form submit handler can stop the browser's default page navigation and then perform application validation:
 
 ~~~jsx
-function handleSubmit(event) {
-  event.preventDefault();
+import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
-  if (!email.includes('@')) {
-    setError('Enter a valid email address.');
-    return;
+export default function EmailForm() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [saved, setSaved] = useState(false);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!email.includes('@')) {
+      setError('Enter a valid email address.');
+      setSaved(false);
+      return;
+    }
+
+    setError('');
+    setSaved(true);
   }
 
-  setError('');
-  saveEmail(email);
+  return (
+    <form onSubmit={handleSubmit}>
+      <TextField
+        autoComplete="email"
+        error={Boolean(error)}
+        helperText={error || 'Enter an address we can contact.'}
+        label="Email address"
+        type="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <Button type="submit" variant="contained">Save email</Button>
+      {saved && <Alert severity="success">Email saved.</Alert>}
+    </form>
+  );
 }
 ~~~
 
