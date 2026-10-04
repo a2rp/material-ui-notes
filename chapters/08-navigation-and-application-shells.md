@@ -102,12 +102,37 @@ export default function NoteViews() {
         value={activeTab}
         onChange={(event, nextTab) => setActiveTab(nextTab)}
       >
-        <Tab label="Recent" value="recent" />
-        <Tab label="Saved" value="saved" />
+        <Tab
+          id="note-tab-recent"
+          aria-controls="note-panel-recent"
+          label="Recent"
+          value="recent"
+        />
+        <Tab
+          id="note-tab-saved"
+          aria-controls="note-panel-saved"
+          label="Saved"
+          value="saved"
+        />
       </Tabs>
-      <Typography role="tabpanel">
-        {activeTab === 'recent' ? 'Recently viewed notes' : 'Saved notes'}
-      </Typography>
+      <Box
+        id="note-panel-recent"
+        role="tabpanel"
+        aria-labelledby="note-tab-recent"
+        hidden={activeTab !== 'recent'}
+        sx={{ p: 2 }}
+      >
+        <Typography>Recently viewed notes</Typography>
+      </Box>
+      <Box
+        id="note-panel-saved"
+        role="tabpanel"
+        aria-labelledby="note-tab-saved"
+        hidden={activeTab !== 'saved'}
+        sx={{ p: 2 }}
+      >
+        <Typography>Saved notes</Typography>
+      </Box>
     </Box>
   );
 }
