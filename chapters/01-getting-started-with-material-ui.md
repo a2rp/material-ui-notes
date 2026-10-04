@@ -88,14 +88,14 @@ Some projects load Roboto from a font CDN instead. Local font files reduce depen
 
 ## Import only what the screen uses
 
-Import components from their package paths or from the package entry point:
+Import each component from its package path:
 
 ~~~jsx
 import Button from '@mui/material/Button';
 import { Stack, Typography } from '@mui/material';
 ~~~
 
-Both styles are supported. Clear imports make dependencies easy to find. Keep component imports focused on what the screen actually renders.
+Focused imports make dependencies easy to find and can improve development startup and rebuild times.
 
 ## Practice questions
 
