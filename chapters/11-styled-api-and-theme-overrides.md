@@ -97,16 +97,23 @@ Use <code>defaultProps</code> for defaults and <code>styleOverrides</code> for s
 For a small nested style, use a documented global slot class rather than the generated hash-prefixed class:
 
 ~~~jsx
-<Button
-  startIcon={<SaveIcon />}
-  sx={{
-    '& .MuiButton-startIcon': {
-      marginRight: 1,
-    },
-  }}
->
-  Save
-</Button>
+import SaveIcon from '@mui/icons-material/Save';
+import Button from '@mui/material/Button';
+
+export default function SaveButton() {
+  return (
+    <Button
+      startIcon={<SaveIcon />}
+      sx={{
+        '& .MuiButton-startIcon': {
+          marginRight: 1,
+        },
+      }}
+    >
+      Save
+    </Button>
+  );
+}
 ~~~
 
 The stable class describes a component slot. Generated class names can change between builds. If the same nested rule appears in many places, move it to a reusable component or the theme.
