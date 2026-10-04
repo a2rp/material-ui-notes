@@ -44,7 +44,7 @@ Use a clear, short message. A snackbar should not be the only place where import
 
 ## Confirm a consequential action
 
-A Dialog is appropriate when a person needs to read information or confirm a decision before continuing. Give it a title and explain what each action will do:
+A Dialog is appropriate when a person needs to read information or confirm a decision before continuing. Give it a title, explain each action, and put initial focus on the safer choice for a destructive decision:
 
 ~~~jsx
 import { useState } from 'react';
