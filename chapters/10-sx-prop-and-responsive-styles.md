@@ -65,9 +65,15 @@ The default breakpoint names are <code>xs</code>, <code>sm</code>, <code>md</cod
 Responsive properties can also be written as arrays in breakpoint order. The keys are easier to read when there are several values, so prefer an object for complex styles:
 
 ~~~jsx
-<Box sx={{ width: { xs: '100%', sm: '80%', md: 640 } }}>
-  Content
-</Box>
+import Box from '@mui/material/Box';
+
+export default function ResponsiveContent() {
+  return (
+    <Box sx={{ width: { xs: '100%', sm: '80%', md: 640 } }}>
+      Content
+    </Box>
+  );
+}
 ~~~
 
 Start with the narrow layout and add changes at wider breakpoints. This keeps the default experience usable on small screens.
