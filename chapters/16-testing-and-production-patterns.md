@@ -43,8 +43,26 @@ The test finds the button by its role and accessible name, then interacts with i
 Check that fields have labels and that validation feedback appears when expected. Test an accessible result rather than only checking that an internal error flag changed.
 
 ~~~jsx
-expect(screen.getByRole('textbox', { name: 'Email address' })).toBeVisible();
-expect(screen.getByText('Enter a valid email address.')).toBeVisible();
+import { expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import TextField from '@mui/material/TextField';
+
+it('shows a labeled email field and its validation message', () => {
+  render(
+    <TextField
+      label="Email address"
+      type="email"
+      defaultValue=""
+      error
+      helperText="Enter a valid email address."
+    />
+  );
+
+  expect(
+    screen.getByRole('textbox', { name: 'Email address' })
+  ).toBeTruthy();
+  expect(screen.getByText('Enter a valid email address.')).toBeTruthy();
+});
 ~~~
 
 For a Select, dialog, menu, or tabs, query the element by its role and accessible name. Use the keyboard in at least one test for an interaction that supports keyboard use.
