@@ -266,9 +266,15 @@ export default function ButtonExamples() {
 ### Example 2
 
 ~~~~jsx
-<Button color="success" size="large" variant="contained">
-  Save changes
-</Button>
+import Button from '@mui/material/Button';
+
+export default function SaveButton() {
+  return (
+    <Button color="success" size="large" variant="contained">
+      Save changes
+    </Button>
+  );
+}
 ~~~~
 
 ### Example 3
@@ -999,9 +1005,15 @@ export default function ResponsivePanel() {
 ### Example 3
 
 ~~~~jsx
-<Box sx={{ width: { xs: '100%', sm: '80%', md: 640 } }}>
-  Content
-</Box>
+import Box from '@mui/material/Box';
+
+export default function ResponsiveContent() {
+  return (
+    <Box sx={{ width: { xs: '100%', sm: '80%', md: 640 } }}>
+      Content
+    </Box>
+  );
+}
 ~~~~
 
 ## The styled API and theme overrides
@@ -1074,16 +1086,23 @@ export default theme;
 ### Example 4
 
 ~~~~jsx
-<Button
-  startIcon={<SaveIcon />}
-  sx={{
-    '& .MuiButton-startIcon': {
-      marginRight: 1,
-    },
-  }}
->
-  Save
-</Button>
+import SaveIcon from '@mui/icons-material/Save';
+import Button from '@mui/material/Button';
+
+export default function SaveButton() {
+  return (
+    <Button
+      startIcon={<SaveIcon />}
+      sx={{
+        '& .MuiButton-startIcon': {
+          marginRight: 1,
+        },
+      }}
+    >
+      Save
+    </Button>
+  );
+}
 ~~~~
 
 ## Responsive layouts and breakpoints
@@ -1323,6 +1342,24 @@ describe('SaveAction', () => {
 ### Example 2
 
 ~~~~jsx
-expect(screen.getByRole('textbox', { name: 'Email address' })).toBeVisible();
-expect(screen.getByText('Enter a valid email address.')).toBeVisible();
+import { expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import TextField from '@mui/material/TextField';
+
+it('shows a labeled email field and its validation message', () => {
+  render(
+    <TextField
+      label="Email address"
+      type="email"
+      defaultValue=""
+      error
+      helperText="Enter a valid email address."
+    />
+  );
+
+  expect(
+    screen.getByRole('textbox', { name: 'Email address' })
+  ).toBeTruthy();
+  expect(screen.getByText('Enter a valid email address.')).toBeTruthy();
+});
 ~~~~
