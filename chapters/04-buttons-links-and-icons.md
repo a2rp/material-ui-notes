@@ -30,9 +30,15 @@ Use a contained button for the primary action on a view. Use outlined and text b
 The <code>color</code> prop selects a theme color and <code>size</code> controls the component size. Prefer the theme palette over custom colors for consistent contrast:
 
 ~~~jsx
-<Button color="success" size="large" variant="contained">
-  Save changes
-</Button>
+import Button from '@mui/material/Button';
+
+export default function SaveButton() {
+  return (
+    <Button color="success" size="large" variant="contained">
+      Save changes
+    </Button>
+  );
+}
 ~~~
 
 ## Use a link for navigation
